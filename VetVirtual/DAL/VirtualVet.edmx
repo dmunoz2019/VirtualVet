@@ -1,0 +1,385 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="virtualvetModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Clientes">
+          <Key>
+            <PropertyRef Name="ClienteId" />
+          </Key>
+          <Property Name="ClienteId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="100" />
+          <Property Name="Apellido" Type="nvarchar" MaxLength="100" />
+          <Property Name="Telefono" Type="nvarchar" MaxLength="20" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Consultas">
+          <Key>
+            <PropertyRef Name="ConsultaId" />
+          </Key>
+          <Property Name="ConsultaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MascotaId" Type="int" />
+          <Property Name="Fecha" Type="datetime" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="500" />
+          <Property Name="Costo" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="Mascotas">
+          <Key>
+            <PropertyRef Name="MascotaId" />
+          </Key>
+          <Property Name="MascotaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClienteId" Type="int" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="100" />
+          <Property Name="Especie" Type="nvarchar" MaxLength="50" />
+          <Property Name="Raza" Type="nvarchar" MaxLength="50" />
+          <Property Name="FechaNacimiento" Type="date" />
+        </EntityType>
+        <Association Name="FK__Consultas__Masco__3C69FB99">
+          <End Role="Mascotas" Type="Self.Mascotas" Multiplicity="0..1" />
+          <End Role="Consultas" Type="Self.Consultas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mascotas">
+              <PropertyRef Name="MascotaId" />
+            </Principal>
+            <Dependent Role="Consultas">
+              <PropertyRef Name="MascotaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Mascotas__Client__398D8EEE">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1" />
+          <End Role="Mascotas" Type="Self.Mascotas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="ClienteId" />
+            </Principal>
+            <Dependent Role="Mascotas">
+              <PropertyRef Name="ClienteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="spActualizarCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ClienteId" Type="int" Mode="In" />
+          <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="Apellido" Type="nvarchar" Mode="In" />
+          <Parameter Name="Telefono" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="spActualizarConsulta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ConsultaId" Type="int" Mode="In" />
+          <Parameter Name="MascotaId" Type="int" Mode="In" />
+          <Parameter Name="Fecha" Type="datetime" Mode="In" />
+          <Parameter Name="Descripcion" Type="nvarchar" Mode="In" />
+          <Parameter Name="Costo" Type="decimal" Mode="In" />
+        </Function>
+        <Function Name="spActualizarMascota" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MascotaId" Type="int" Mode="In" />
+          <Parameter Name="ClienteId" Type="int" Mode="In" />
+          <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="Especie" Type="nvarchar" Mode="In" />
+          <Parameter Name="Raza" Type="nvarchar" Mode="In" />
+          <Parameter Name="FechaNacimiento" Type="date" Mode="In" />
+        </Function>
+        <Function Name="spAgregarCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="Apellido" Type="nvarchar" Mode="In" />
+          <Parameter Name="Telefono" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="spAgregarConsulta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MascotaId" Type="int" Mode="In" />
+          <Parameter Name="Fecha" Type="datetime" Mode="In" />
+          <Parameter Name="Descripcion" Type="nvarchar" Mode="In" />
+          <Parameter Name="Costo" Type="decimal" Mode="In" />
+        </Function>
+        <Function Name="spAgregarMascota" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ClienteId" Type="int" Mode="In" />
+          <Parameter Name="Nombre" Type="nvarchar" Mode="In" />
+          <Parameter Name="Especie" Type="nvarchar" Mode="In" />
+          <Parameter Name="Raza" Type="nvarchar" Mode="In" />
+          <Parameter Name="FechaNacimiento" Type="date" Mode="In" />
+        </Function>
+        <Function Name="spEliminarCliente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ClienteId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spEliminarConsulta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ConsultaId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spEliminarMascota" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MascotaId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spObtenerClientes" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spObtenerConsultas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spObtenerMascotas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="virtualvetModelStoreContainer">
+          <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Consultas" EntityType="Self.Consultas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mascotas" EntityType="Self.Mascotas" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Consultas__Masco__3C69FB99" Association="Self.FK__Consultas__Masco__3C69FB99">
+            <End Role="Mascotas" EntitySet="Mascotas" />
+            <End Role="Consultas" EntitySet="Consultas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Mascotas__Client__398D8EEE" Association="Self.FK__Mascotas__Client__398D8EEE">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Mascotas" EntitySet="Mascotas" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="virtualvetModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Clientes">
+          <Key>
+            <PropertyRef Name="ClienteId" />
+          </Key>
+          <Property Name="ClienteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Apellido" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Mascotas" Relationship="Self.FK__Mascotas__Client__398D8EEE" FromRole="Clientes" ToRole="Mascotas" />
+        </EntityType>
+        <EntityType Name="Consultas">
+          <Key>
+            <PropertyRef Name="ConsultaId" />
+          </Key>
+          <Property Name="ConsultaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fecha" Type="DateTime" Precision="3" />
+          <Property Name="Descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Costo" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="Mascotas" Relationship="Self.FK__Consultas__Masco__3C69FB99" FromRole="Consultas" ToRole="Mascotas" />
+        </EntityType>
+        <EntityType Name="Mascotas">
+          <Key>
+            <PropertyRef Name="MascotaId" />
+          </Key>
+          <Property Name="MascotaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Especie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Raza" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FechaNacimiento" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Clientes" Relationship="Self.FK__Mascotas__Client__398D8EEE" FromRole="Mascotas" ToRole="Clientes" />
+          <NavigationProperty Name="Consultas" Relationship="Self.FK__Consultas__Masco__3C69FB99" FromRole="Mascotas" ToRole="Consultas" />
+        </EntityType>
+        <Association Name="FK__Mascotas__Client__398D8EEE">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1" />
+          <End Role="Mascotas" Type="Self.Mascotas" Multiplicity="*" />
+        </Association>
+        <Association Name="FK__Consultas__Masco__3C69FB99">
+          <End Role="Mascotas" Type="Self.Mascotas" Multiplicity="0..1" />
+          <End Role="Consultas" Type="Self.Consultas" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="virtualvetEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Clientes" EntityType="Self.Clientes" />
+          <EntitySet Name="Consultas" EntityType="Self.Consultas" />
+          <EntitySet Name="Mascotas" EntityType="Self.Mascotas" />
+          <AssociationSet Name="FK__Mascotas__Client__398D8EEE" Association="Self.FK__Mascotas__Client__398D8EEE">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Mascotas" EntitySet="Mascotas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Consultas__Masco__3C69FB99" Association="Self.FK__Consultas__Masco__3C69FB99">
+            <End Role="Mascotas" EntitySet="Mascotas" />
+            <End Role="Consultas" EntitySet="Consultas" />
+          </AssociationSet>
+          <FunctionImport Name="spActualizarCliente">
+            <Parameter Name="ClienteId" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Apellido" Mode="In" Type="String" />
+            <Parameter Name="Telefono" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spActualizarConsulta">
+            <Parameter Name="ConsultaId" Mode="In" Type="Int32" />
+            <Parameter Name="MascotaId" Mode="In" Type="Int32" />
+            <Parameter Name="Fecha" Mode="In" Type="DateTime" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="Costo" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="spActualizarMascota">
+            <Parameter Name="MascotaId" Mode="In" Type="Int32" />
+            <Parameter Name="ClienteId" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Especie" Mode="In" Type="String" />
+            <Parameter Name="Raza" Mode="In" Type="String" />
+            <Parameter Name="FechaNacimiento" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="spAgregarCliente">
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Apellido" Mode="In" Type="String" />
+            <Parameter Name="Telefono" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="spAgregarConsulta">
+            <Parameter Name="MascotaId" Mode="In" Type="Int32" />
+            <Parameter Name="Fecha" Mode="In" Type="DateTime" />
+            <Parameter Name="Descripcion" Mode="In" Type="String" />
+            <Parameter Name="Costo" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="spAgregarMascota">
+            <Parameter Name="ClienteId" Mode="In" Type="Int32" />
+            <Parameter Name="Nombre" Mode="In" Type="String" />
+            <Parameter Name="Especie" Mode="In" Type="String" />
+            <Parameter Name="Raza" Mode="In" Type="String" />
+            <Parameter Name="FechaNacimiento" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="spEliminarCliente">
+            <Parameter Name="ClienteId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spEliminarConsulta">
+            <Parameter Name="ConsultaId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spEliminarMascota">
+            <Parameter Name="MascotaId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="spObtenerClientes" ReturnType="Collection(virtualvetModel.spObtenerClientes_Result)" />
+          <FunctionImport Name="spObtenerConsultas" ReturnType="Collection(virtualvetModel.spObtenerConsultas_Result)" />
+          <FunctionImport Name="spObtenerMascotas" ReturnType="Collection(virtualvetModel.spObtenerMascotas_Result)" />
+        </EntityContainer>
+        <ComplexType Name="spObtenerClientes_Result">
+          <Property Type="Int32" Name="ClienteId" Nullable="false" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Apellido" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Telefono" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="spObtenerConsultas_Result">
+          <Property Type="Int32" Name="ConsultaId" Nullable="false" />
+          <Property Type="Int32" Name="MascotaId" Nullable="true" />
+          <Property Type="DateTime" Name="Fecha" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="500" />
+          <Property Type="Decimal" Name="Costo" Nullable="true" Precision="10" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="spObtenerMascotas_Result">
+          <Property Type="Int32" Name="MascotaId" Nullable="false" />
+          <Property Type="Int32" Name="ClienteId" Nullable="true" />
+          <Property Type="String" Name="Nombre" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Especie" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Raza" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="FechaNacimiento" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="virtualvetModelStoreContainer" CdmEntityContainer="virtualvetEntities">
+          <EntitySetMapping Name="Clientes">
+            <EntityTypeMapping TypeName="virtualvetModel.Clientes">
+              <MappingFragment StoreEntitySet="Clientes">
+                <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Consultas">
+            <EntityTypeMapping TypeName="virtualvetModel.Consultas">
+              <MappingFragment StoreEntitySet="Consultas">
+                <ScalarProperty Name="ConsultaId" ColumnName="ConsultaId" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Costo" ColumnName="Costo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mascotas">
+            <EntityTypeMapping TypeName="virtualvetModel.Mascotas">
+              <MappingFragment StoreEntitySet="Mascotas">
+                <ScalarProperty Name="MascotaId" ColumnName="MascotaId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Especie" ColumnName="Especie" />
+                <ScalarProperty Name="Raza" ColumnName="Raza" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="FK__Mascotas__Client__398D8EEE" TypeName="virtualvetModel.FK__Mascotas__Client__398D8EEE" StoreEntitySet="Mascotas">
+            <EndProperty Name="Clientes">
+              <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+            </EndProperty>
+            <EndProperty Name="Mascotas">
+              <ScalarProperty Name="MascotaId" ColumnName="MascotaId" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="ClienteId" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="FK__Consultas__Masco__3C69FB99" TypeName="virtualvetModel.FK__Consultas__Masco__3C69FB99" StoreEntitySet="Consultas">
+            <EndProperty Name="Mascotas">
+              <ScalarProperty Name="MascotaId" ColumnName="MascotaId" />
+            </EndProperty>
+            <EndProperty Name="Consultas">
+              <ScalarProperty Name="ConsultaId" ColumnName="ConsultaId" />
+            </EndProperty>
+            <Condition IsNull="false" ColumnName="MascotaId" />
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="spActualizarCliente" FunctionName="virtualvetModel.Store.spActualizarCliente" />
+          <FunctionImportMapping FunctionImportName="spActualizarConsulta" FunctionName="virtualvetModel.Store.spActualizarConsulta" />
+          <FunctionImportMapping FunctionImportName="spActualizarMascota" FunctionName="virtualvetModel.Store.spActualizarMascota" />
+          <FunctionImportMapping FunctionImportName="spAgregarCliente" FunctionName="virtualvetModel.Store.spAgregarCliente" />
+          <FunctionImportMapping FunctionImportName="spAgregarConsulta" FunctionName="virtualvetModel.Store.spAgregarConsulta" />
+          <FunctionImportMapping FunctionImportName="spAgregarMascota" FunctionName="virtualvetModel.Store.spAgregarMascota" />
+          <FunctionImportMapping FunctionImportName="spEliminarCliente" FunctionName="virtualvetModel.Store.spEliminarCliente" />
+          <FunctionImportMapping FunctionImportName="spEliminarConsulta" FunctionName="virtualvetModel.Store.spEliminarConsulta" />
+          <FunctionImportMapping FunctionImportName="spEliminarMascota" FunctionName="virtualvetModel.Store.spEliminarMascota" />
+          <FunctionImportMapping FunctionImportName="spObtenerClientes" FunctionName="virtualvetModel.Store.spObtenerClientes">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="virtualvetModel.spObtenerClientes_Result">
+                <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spObtenerConsultas" FunctionName="virtualvetModel.Store.spObtenerConsultas">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="virtualvetModel.spObtenerConsultas_Result">
+                <ScalarProperty Name="ConsultaId" ColumnName="ConsultaId" />
+                <ScalarProperty Name="MascotaId" ColumnName="MascotaId" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Costo" ColumnName="Costo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="spObtenerMascotas" FunctionName="virtualvetModel.Store.spObtenerMascotas">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="virtualvetModel.spObtenerMascotas_Result">
+                <ScalarProperty Name="MascotaId" ColumnName="MascotaId" />
+                <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Especie" ColumnName="Especie" />
+                <ScalarProperty Name="Raza" ColumnName="Raza" />
+                <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

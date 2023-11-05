@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="virtualvetModelStoreContainer" CdmEntityContainer="virtualvetEntities">
+    <EntitySetMapping Name="Clientes">
+      <EntityTypeMapping TypeName="virtualvetModel.Clientes">
+        <MappingFragment StoreEntitySet="Clientes">
+          <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Consultas">
+      <EntityTypeMapping TypeName="virtualvetModel.Consultas">
+        <MappingFragment StoreEntitySet="Consultas">
+          <ScalarProperty Name="ConsultaId" ColumnName="ConsultaId" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Costo" ColumnName="Costo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Mascotas">
+      <EntityTypeMapping TypeName="virtualvetModel.Mascotas">
+        <MappingFragment StoreEntitySet="Mascotas">
+          <ScalarProperty Name="MascotaId" ColumnName="MascotaId" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Especie" ColumnName="Especie" />
+          <ScalarProperty Name="Raza" ColumnName="Raza" />
+          <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="FK__Mascotas__Client__398D8EEE" TypeName="virtualvetModel.FK__Mascotas__Client__398D8EEE" StoreEntitySet="Mascotas">
+      <EndProperty Name="Clientes">
+        <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+      </EndProperty>
+      <EndProperty Name="Mascotas">
+        <ScalarProperty Name="MascotaId" ColumnName="MascotaId" />
+      </EndProperty>
+      <Condition IsNull="false" ColumnName="ClienteId" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK__Consultas__Masco__3C69FB99" TypeName="virtualvetModel.FK__Consultas__Masco__3C69FB99" StoreEntitySet="Consultas">
+      <EndProperty Name="Mascotas">
+        <ScalarProperty Name="MascotaId" ColumnName="MascotaId" />
+      </EndProperty>
+      <EndProperty Name="Consultas">
+        <ScalarProperty Name="ConsultaId" ColumnName="ConsultaId" />
+      </EndProperty>
+      <Condition IsNull="false" ColumnName="MascotaId" />
+    </AssociationSetMapping>
+    <FunctionImportMapping FunctionImportName="spActualizarCliente" FunctionName="virtualvetModel.Store.spActualizarCliente" />
+    <FunctionImportMapping FunctionImportName="spActualizarConsulta" FunctionName="virtualvetModel.Store.spActualizarConsulta" />
+    <FunctionImportMapping FunctionImportName="spActualizarMascota" FunctionName="virtualvetModel.Store.spActualizarMascota" />
+    <FunctionImportMapping FunctionImportName="spAgregarCliente" FunctionName="virtualvetModel.Store.spAgregarCliente" />
+    <FunctionImportMapping FunctionImportName="spAgregarConsulta" FunctionName="virtualvetModel.Store.spAgregarConsulta" />
+    <FunctionImportMapping FunctionImportName="spAgregarMascota" FunctionName="virtualvetModel.Store.spAgregarMascota" />
+    <FunctionImportMapping FunctionImportName="spEliminarCliente" FunctionName="virtualvetModel.Store.spEliminarCliente" />
+    <FunctionImportMapping FunctionImportName="spEliminarConsulta" FunctionName="virtualvetModel.Store.spEliminarConsulta" />
+    <FunctionImportMapping FunctionImportName="spEliminarMascota" FunctionName="virtualvetModel.Store.spEliminarMascota" />
+    <FunctionImportMapping FunctionImportName="spObtenerClientes" FunctionName="virtualvetModel.Store.spObtenerClientes">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="virtualvetModel.spObtenerClientes_Result">
+          <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spObtenerConsultas" FunctionName="virtualvetModel.Store.spObtenerConsultas">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="virtualvetModel.spObtenerConsultas_Result">
+          <ScalarProperty Name="ConsultaId" ColumnName="ConsultaId" />
+          <ScalarProperty Name="MascotaId" ColumnName="MascotaId" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Costo" ColumnName="Costo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="spObtenerMascotas" FunctionName="virtualvetModel.Store.spObtenerMascotas">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="virtualvetModel.spObtenerMascotas_Result">
+          <ScalarProperty Name="MascotaId" ColumnName="MascotaId" />
+          <ScalarProperty Name="ClienteId" ColumnName="ClienteId" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Especie" ColumnName="Especie" />
+          <ScalarProperty Name="Raza" ColumnName="Raza" />
+          <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

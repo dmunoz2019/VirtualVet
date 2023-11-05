@@ -1,0 +1,15 @@
+C:\Users\dmuno\Repositorios\WCF\ParcialII\VetVirtual\VetVirtualWCF\bin\VetVirtualWCF.dll.config
+C:\Users\dmuno\Repositorios\WCF\ParcialII\VetVirtual\VetVirtualWCF\bin\VetVirtualWCF.dll
+C:\Users\dmuno\Repositorios\WCF\ParcialII\VetVirtual\VetVirtualWCF\bin\VetVirtualWCF.pdb
+C:\Users\dmuno\Repositorios\WCF\ParcialII\VetVirtual\VetVirtualWCF\obj\Debug\VetVirtualWCF.csproj.AssemblyReference.cache
+C:\Users\dmuno\Repositorios\WCF\ParcialII\VetVirtual\VetVirtualWCF\obj\Debug\VetVirtualWCF.csproj.CoreCompileInputs.cache
+C:\Users\dmuno\Repositorios\WCF\ParcialII\VetVirtual\VetVirtualWCF\obj\Debug\VetVirtualWCF.dll
+C:\Users\dmuno\Repositorios\WCF\ParcialII\VetVirtual\VetVirtualWCF\obj\Debug\VetVirtualWCF.pdb
+C:\Users\dmuno\Repositorios\WCF\ParcialII\VetVirtual\VetVirtualWCF\bin\DAL.dll
+C:\Users\dmuno\Repositorios\WCF\ParcialII\VetVirtual\VetVirtualWCF\bin\EntityFramework.dll
+C:\Users\dmuno\Repositorios\WCF\ParcialII\VetVirtual\VetVirtualWCF\bin\EntityFramework.SqlServer.dll
+C:\Users\dmuno\Repositorios\WCF\ParcialII\VetVirtual\VetVirtualWCF\bin\DAL.pdb
+C:\Users\dmuno\Repositorios\WCF\ParcialII\VetVirtual\VetVirtualWCF\bin\DAL.dll.config
+C:\Users\dmuno\Repositorios\WCF\ParcialII\VetVirtual\VetVirtualWCF\bin\EntityFramework.xml
+C:\Users\dmuno\Repositorios\WCF\ParcialII\VetVirtual\VetVirtualWCF\bin\EntityFramework.SqlServer.xml
+C:\Users\dmuno\Repositorios\WCF\ParcialII\VetVirtual\VetVirtualWCF\obj\Debug\VetVirtualWCF.csproj.CopyComplete

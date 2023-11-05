@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="virtualvetModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Clientes">
+    <Key>
+      <PropertyRef Name="ClienteId" />
+    </Key>
+    <Property Name="ClienteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Apellido" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Mascotas" Relationship="Self.FK__Mascotas__Client__398D8EEE" FromRole="Clientes" ToRole="Mascotas" />
+  </EntityType>
+  <EntityType Name="Consultas">
+    <Key>
+      <PropertyRef Name="ConsultaId" />
+    </Key>
+    <Property Name="ConsultaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Fecha" Type="DateTime" Precision="3" />
+    <Property Name="Descripcion" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Costo" Type="Decimal" Precision="10" Scale="2" />
+    <NavigationProperty Name="Mascotas" Relationship="Self.FK__Consultas__Masco__3C69FB99" FromRole="Consultas" ToRole="Mascotas" />
+  </EntityType>
+  <EntityType Name="Mascotas">
+    <Key>
+      <PropertyRef Name="MascotaId" />
+    </Key>
+    <Property Name="MascotaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Especie" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Raza" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="FechaNacimiento" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Clientes" Relationship="Self.FK__Mascotas__Client__398D8EEE" FromRole="Mascotas" ToRole="Clientes" />
+    <NavigationProperty Name="Consultas" Relationship="Self.FK__Consultas__Masco__3C69FB99" FromRole="Mascotas" ToRole="Consultas" />
+  </EntityType>
+  <Association Name="FK__Mascotas__Client__398D8EEE">
+    <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1" />
+    <End Role="Mascotas" Type="Self.Mascotas" Multiplicity="*" />
+  </Association>
+  <Association Name="FK__Consultas__Masco__3C69FB99">
+    <End Role="Mascotas" Type="Self.Mascotas" Multiplicity="0..1" />
+    <End Role="Consultas" Type="Self.Consultas" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="virtualvetEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Clientes" EntityType="Self.Clientes" />
+    <EntitySet Name="Consultas" EntityType="Self.Consultas" />
+    <EntitySet Name="Mascotas" EntityType="Self.Mascotas" />
+    <AssociationSet Name="FK__Mascotas__Client__398D8EEE" Association="Self.FK__Mascotas__Client__398D8EEE">
+      <End Role="Clientes" EntitySet="Clientes" />
+      <End Role="Mascotas" EntitySet="Mascotas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Consultas__Masco__3C69FB99" Association="Self.FK__Consultas__Masco__3C69FB99">
+      <End Role="Mascotas" EntitySet="Mascotas" />
+      <End Role="Consultas" EntitySet="Consultas" />
+    </AssociationSet>
+    <FunctionImport Name="spActualizarCliente">
+      <Parameter Name="ClienteId" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Apellido" Mode="In" Type="String" />
+      <Parameter Name="Telefono" Mode="In" Type="String" />
+      <Parameter Name="Email" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spActualizarConsulta">
+      <Parameter Name="ConsultaId" Mode="In" Type="Int32" />
+      <Parameter Name="MascotaId" Mode="In" Type="Int32" />
+      <Parameter Name="Fecha" Mode="In" Type="DateTime" />
+      <Parameter Name="Descripcion" Mode="In" Type="String" />
+      <Parameter Name="Costo" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="spActualizarMascota">
+      <Parameter Name="MascotaId" Mode="In" Type="Int32" />
+      <Parameter Name="ClienteId" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Especie" Mode="In" Type="String" />
+      <Parameter Name="Raza" Mode="In" Type="String" />
+      <Parameter Name="FechaNacimiento" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="spAgregarCliente">
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Apellido" Mode="In" Type="String" />
+      <Parameter Name="Telefono" Mode="In" Type="String" />
+      <Parameter Name="Email" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="spAgregarConsulta">
+      <Parameter Name="MascotaId" Mode="In" Type="Int32" />
+      <Parameter Name="Fecha" Mode="In" Type="DateTime" />
+      <Parameter Name="Descripcion" Mode="In" Type="String" />
+      <Parameter Name="Costo" Mode="In" Type="Decimal" />
+    </FunctionImport>
+    <FunctionImport Name="spAgregarMascota">
+      <Parameter Name="ClienteId" Mode="In" Type="Int32" />
+      <Parameter Name="Nombre" Mode="In" Type="String" />
+      <Parameter Name="Especie" Mode="In" Type="String" />
+      <Parameter Name="Raza" Mode="In" Type="String" />
+      <Parameter Name="FechaNacimiento" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="spEliminarCliente">
+      <Parameter Name="ClienteId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spEliminarConsulta">
+      <Parameter Name="ConsultaId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spEliminarMascota">
+      <Parameter Name="MascotaId" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="spObtenerClientes" ReturnType="Collection(virtualvetModel.spObtenerClientes_Result)" />
+    <FunctionImport Name="spObtenerConsultas" ReturnType="Collection(virtualvetModel.spObtenerConsultas_Result)" />
+    <FunctionImport Name="spObtenerMascotas" ReturnType="Collection(virtualvetModel.spObtenerMascotas_Result)" />
+  </EntityContainer>
+  <ComplexType Name="spObtenerClientes_Result">
+    <Property Type="Int32" Name="ClienteId" Nullable="false" />
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Apellido" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Telefono" Nullable="true" MaxLength="20" />
+    <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="spObtenerConsultas_Result">
+    <Property Type="Int32" Name="ConsultaId" Nullable="false" />
+    <Property Type="Int32" Name="MascotaId" Nullable="true" />
+    <Property Type="DateTime" Name="Fecha" Nullable="true" Precision="23" />
+    <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="500" />
+    <Property Type="Decimal" Name="Costo" Nullable="true" Precision="10" Scale="2" />
+  </ComplexType>
+  <ComplexType Name="spObtenerMascotas_Result">
+    <Property Type="Int32" Name="MascotaId" Nullable="false" />
+    <Property Type="Int32" Name="ClienteId" Nullable="true" />
+    <Property Type="String" Name="Nombre" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Especie" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="Raza" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="FechaNacimiento" Nullable="true" />
+  </ComplexType>
+</Schema>

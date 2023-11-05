@@ -1,0 +1,7 @@
+C:\Users\dmuno\Repositorios\WCF\ParcialII\BiblitecaVirtual\BiblitecaVirtual\bin\BiblitecaVirtual.dll.config
+C:\Users\dmuno\Repositorios\WCF\ParcialII\BiblitecaVirtual\BiblitecaVirtual\bin\BiblitecaVirtual.dll
+C:\Users\dmuno\Repositorios\WCF\ParcialII\BiblitecaVirtual\BiblitecaVirtual\bin\BiblitecaVirtual.pdb
+C:\Users\dmuno\Repositorios\WCF\ParcialII\BiblitecaVirtual\BiblitecaVirtual\obj\Debug\BiblitecaVirtualWCF.csproj.AssemblyReference.cache
+C:\Users\dmuno\Repositorios\WCF\ParcialII\BiblitecaVirtual\BiblitecaVirtual\obj\Debug\BiblitecaVirtualWCF.csproj.CoreCompileInputs.cache
+C:\Users\dmuno\Repositorios\WCF\ParcialII\BiblitecaVirtual\BiblitecaVirtual\obj\Debug\BiblitecaVirtual.dll
+C:\Users\dmuno\Repositorios\WCF\ParcialII\BiblitecaVirtual\BiblitecaVirtual\obj\Debug\BiblitecaVirtual.pdb
